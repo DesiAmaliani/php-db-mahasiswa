@@ -1,5 +1,13 @@
 <?php
+session_start();
 include "koneksi.php";
+
+  if(!isset($_SESSION['username'])){
+    header("location:login.php");
+    exit();
+  }else{
+    $username = $_SESSION['username'];
+  }
 ?>
 <html>
 <head>
@@ -7,6 +15,7 @@ include "koneksi.php";
 </head>
 <body>
 	<h1 align="center">Tabel Mahasiswa</h1>
+	<p><a href="logout.php">logout</a></p>
 	<?php
 		$sql ='select *from mahasiswa';
 		$query=mysqli_query($con,$sql);
